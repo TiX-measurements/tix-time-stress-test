@@ -17,8 +17,8 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">10</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">100</stringProp>
+        <stringProp name="ThreadGroup.num_threads">500</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1000</stringProp>
         <longProp name="ThreadGroup.start_time">1509432989000</longProp>
         <longProp name="ThreadGroup.end_time">1509432989000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
@@ -42,11 +42,12 @@ port = vars.get(&quot;port&quot;);
 installationName = vars.get(&quot;installation-base-name&quot;) + port;
 
 LoginDetails data = Setup.login(user, password);
-InstallationDetails installation = Setup.install(installationName, data.token, data.userId);
+InstallationDetails installation = Setup.install(installationName, data.token, (int)data.userId);
 
 log.info(&quot;{ userId: &quot; + data.userId + &quot; installation: &quot; + installation.installationId + &quot;, keyPair: &quot; + installation.keyPair.toString() + &quot;, port: &quot; + port + &quot; }&quot;);             
 Reporter rep = new Reporter((long)data.userId, (long)installation.installationId, installation.keyPair, Integer.parseInt(port));
 rep.run();
+
 
 </stringProp>
         </JSR223Sampler>
